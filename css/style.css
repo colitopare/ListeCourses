@@ -1,0 +1,33 @@
+/* Feuille de style générale pour le site */
+
+/*paramètres général de la page*/
+body {
+
+}
+
+/*Police des titres*/
+h1, h2, h3 {
+    font-family: 'Courgette', cursive;
+}
+
+
+/*---------------*/
+/*    Menu       */
+/*---------------*/
+
+
+
+#navbar {
+    background-color: #f3e9ef;
+    margin: 0;
+}
+
+
+/*---------------*/
+/*    Footer     */
+/*---------------*/
+
+.footerPage {
+    background-color: #E577B5;
+    color: #FFFFFF;
+}
