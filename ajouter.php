@@ -12,7 +12,7 @@ $produit = $_POST['produit'];
 $quantite = $_POST['quantite'];
 
 // ma requête
-$req_insert = "INSERT INTO produits (
+$req_insert = "INSERT INTO produits(
                             produit, 
                             quantite                         
                     )VALUES( 
@@ -29,8 +29,8 @@ $list_prod_insert->bindValue(':quantite', $quantite, PDO::PARAM_INT);
 
 
 $list_prod_insert->execute(array(
-    'produit' => $produit,
-    'quantite' => $quantite
+                            'produit' => $produit,
+                            'quantite' => $quantite
 ));
 
 header('Location: http://localhost/ListeCourses/index.php');
