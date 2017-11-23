@@ -14,7 +14,7 @@
 <script src="js/script.js" type="text/javascript"></script>
 <!--Que lorsque j'en ai besoin-->
 <!--Spécificque pour page DataTables  Que lorsque j'en ai besoin-->
-<script src="js/scriptDatatables.js" type="text/javascript"></script>
+<!--<script src="js/scriptDatatables.js" type="text/javascript"></script>-->
 <!--Spécificque pour page jQueryUI Que lorsque j'en ai besoin-->
 <script src="js/scriptJqueryUi.js" type="text/javascript"></script>
 

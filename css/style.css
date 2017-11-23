@@ -15,8 +15,6 @@ h1, h2, h3 {
 /*    Menu       */
 /*---------------*/
 
-
-
 #navbar {
     background-color: #f3e9ef;
     margin: 0;
@@ -27,7 +25,17 @@ h1, h2, h3 {
 /*    Footer     */
 /*---------------*/
 
-.footerPage {
-    background-color: #E577B5;
+.footer {
+    background-color: #9fcdff;
     color: #FFFFFF;
+}
+
+/*met une main au survol de la case à cochet*/
+.chekFait {
+    cursor: pointer;
+}
+
+/*met une main au survol de la case à cochet*/
+.chekSup {
+    cursor: pointer;
 }
