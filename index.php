@@ -27,13 +27,13 @@ require_once 'connexion.php';
             if ($list_produits->execute()) {
                 $lignes_produits = $list_produits->fetchAll();
                 foreach ($lignes_produits as $row) {
-                    echo "<tr>";
-                    echo "<td><i id=\"supprimer\" class=\"fa fa-trash chekSup\" aria-hidden=\"true\"></i> ". $row['produit'] ."</td>";
+                    echo "<tr id='id_ligne_prod'>";
+                    echo "<td><i data-id='". $row['id_produit'] ."' class='fa fa-trash chekSup supprimer' aria-hidden='true'></i> ". $row['produit'] ."</td>";
                     echo "<td>". $row['quantite'] ."</td>";
                     if ($row['fait'] == 0){
-                         echo "<td><i class=\"fa fa-square-o chekFait\" aria-hidden='true'></i></td>";
+                         echo "<td><i class='fa fa-square-o chekFait' aria-hidden='true'></i></td>";
                     }else{
-                        echo "<td><i class=\"fa fa-check-square-o chekFait\" aria-hidden='true'></i></td>";
+                        echo "<td><i class='fa fa-check-square-o chekFait' aria-hidden='true'></i></td>";
                     }
                     echo "</tr>";
                 }

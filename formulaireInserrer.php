@@ -6,7 +6,7 @@ require_once 'connexion.php';
 ?>
 
 
-<form class="container">
+<form class="container" method="post" action="ajouter.php">
     <div class="form-group">
         <label for="produit">Produit</label>
         <input type="texte" class="form-control" id="produit">
@@ -17,9 +17,6 @@ require_once 'connexion.php';
     </div>
     <button type="submit" class="btn btn-primary">Ajouter</button>
 </form>
-
-
-
 
 
 <?php
