@@ -3,11 +3,16 @@ include 'header.php';
 
 //connection rootà la base de données
 require_once 'connexion.php';
+
+
 ?>
 
     <!--contenu de la page-->
     <main class="container">
 
+        <div id="messAlert" class="alert" role="alert">
+
+        </div>
 
         <table class="table table-striped">
             <thead>
@@ -27,14 +32,13 @@ require_once 'connexion.php';
             if ($list_produits->execute()) {
                 $lignes_produits = $list_produits->fetchAll();
                 foreach ($lignes_produits as $row) {
-                    echo "<tr id='id_ligne_prod'>";
+                    echo "<tr id='id_". $row['id_produit'] ."'>";
                     echo "<td><i data-id='". $row['id_produit'] ."' class='fa fa-trash chekSup supprimer' aria-hidden='true'></i> ". $row['produit'] ."</td>";
                     echo "<td>". $row['quantite'] ."</td>";
-                    if ($row['fait'] == 0){
-                         echo "<td><i class='fa fa-square-o chekFait' aria-hidden='true'></i></td>";
-                    }else{
-                        echo "<td><i class='fa fa-check-square-o chekFait' aria-hidden='true'></i></td>";
-                    }
+
+                    $classSup = ($row['fait'] == 0 ? 'fa-square-o' : 'fa-check-square-o ');
+                        echo "<td><i data-chek='". $row['id_produit'] ."' class='fa ". $classSup ." chekFait' aria-hidden='true'></i></td>";
+
                     echo "</tr>";
                 }
 

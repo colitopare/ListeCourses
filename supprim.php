@@ -21,4 +21,17 @@ $list_prod_sup = $bdd->prepare($req_sup);
 $list_prod_sup->bindValue(':id_produit', $id_prod, PDO::PARAM_INT);
 
 $list_prod_sup->execute();
- echo 'console.log("ok bien envoyé");';
+
+
+ ////////////////////////////////////////////
+// script jouer dès que le code PHP est executé
+////////////////////////////////////////////////
+
+// cachera la ligne du produit cliquer (avec l'id_produit)
+echo "$('#id_$id_prod').remove();";
+
+// je vais afficher un message pour dire que tout c'est bien passé
+// Je modifie la classe
+echo "$('#messAlert').addClass('alert alert-success');";
+// je met le message qui va bien
+echo "$('#messAlert').prepend('Votre suppression c est bien passé');";
