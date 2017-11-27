@@ -6,6 +6,10 @@
  * Time: 08:49
  */
 
+
+//connection rootà la base de données
+require_once 'connexion.php';
+
 /////////////////////////////////////////
 //   !   ATTENTION  !      //////////////
 // bien faire :
@@ -49,4 +53,17 @@ function TestTypeValeur($valeurTester, $type){
             $typeRetourTest = filter_var($typeNettoyer, FILTER_VALIDATE_EMAIL);
             return $typeRetourTest;
     }
+}
+
+function updateFaitProduit($valFait, $idProd){
+    // ma requete
+    $req_update_fait = "UPDATE produits 
+                    SET fait = $valFait WHERE id_produit = :id_produit";
+    // prépare la requête
+    $prod_update = $bdd->prepare($req_update_fait);
+
+    // lie la variable $id_prod définie au-dessus au paramètre :id_produit de la requête préparée
+    $prod_update->bindValue(':id_produit', $idProd, PDO::PARAM_INT);
+
+    return $prod_update->execute();
 }
