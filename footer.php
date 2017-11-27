@@ -1,7 +1,7 @@
 <footer id="footer">
 
     <div class="container-fluid justify-content-center">
-        <p class="text-muted">WebForce3</p>
+        <p class="row ext-muted">WebForce3</p>
     </div>
 </footer>
 

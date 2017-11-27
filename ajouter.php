@@ -66,17 +66,11 @@ if ((filter_var($produit,FILTER_SANITIZE_STRING))
     // lie la variable $id_prod définie au-dessus au paramètre :id_produit de la requête préparée
     $list_prod_insert->bindValue(':produit', $produit, PDO::PARAM_STR);
     $list_prod_insert->bindValue(':quantite', $quantite, PDO::PARAM_INT);
-
-
     $list_prod_insert->execute(array(
         'produit' => $produit,
         'quantite' => $quantite
     ));
-
     header('Location: http://localhost/ListeCourses/index.php');
-
-
 } else {
     header('Location: http://localhost/ListeCourses/index.php');
-
 }
