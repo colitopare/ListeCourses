@@ -8,6 +8,8 @@
 //connection rootà la base de données
 require_once 'connexion.php';
 
+include 'fonctions.php';
+
 // je récupère dans une variable, idProd passer dans url
 $id_prod = $_GET['idProd'];
 
@@ -30,8 +32,12 @@ $list_prod_sup->execute();
 // cachera la ligne du produit cliquer (avec l'id_produit)
 echo "$('#id_$id_prod').remove();";
 
+
 // je vais afficher un message pour dire que tout c'est bien passé
 // Je modifie la classe
 echo "$('#messAlert').addClass('alert alert-success');";
 // je met le message qui va bien
 echo "$('#messAlert').prepend('Votre suppression c est bien passé');";
+
+$req_sum = "SELECT SUM(quantite) AS sumProd FROM produits";
+echo "$('#total span').text(".nbre($req_sum).");";

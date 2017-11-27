@@ -8,7 +8,7 @@ jQuery(document).ready(function ($) {
 // lorsque je vais cliquer sur la poubelle
 // j'exécuterais le php de supprim.php
 // en passant id dans l'url
-$(".supprimer").click(function () {
+$(".supprimer").on('click', function () {
     // je récupère l attribut data_id de la ligne cliquer
     // var pour que la variable soit en local
     var id = $(this).attr('data-id');
@@ -29,7 +29,7 @@ $(".supprimer").click(function () {
 // lorsque je vais cliquer sur la case pris du produit
 // j'exécuterais le php de check.php
 // en passant id dans l'url
-$(".checkFait").click(function () {
+$(".checkFait").on('click', function () {
     // je récupère l attribut data_id de la ligne cliquer
     var id = $(this).attr('data-check');
     // Pour utiliser un même fichier pour faire check ou plus je passe un deuxième paramètre dans l'URL

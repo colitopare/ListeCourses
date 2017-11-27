@@ -67,3 +67,19 @@ function updateFaitProduit($valFait, $idProd){
 
     return $prod_update->execute();
 }
+
+
+function nbre($requete){
+
+    global $bdd;
+    $sum_prod_tot = $bdd->prepare($requete);
+    if ($sum_prod_tot->execute()){
+        $lignes_sum_prod = $sum_prod_tot->fetchAll();
+
+        $sum = 0;
+        foreach ($lignes_sum_prod as $row){
+            $sum += $row['sumProd'];
+            return $sum;
+        }
+    }
+}

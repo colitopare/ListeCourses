@@ -43,11 +43,11 @@ foreach ($varEntr as $champTester) {
 //je cherche si le produit dont l'id est passé dans l'URL existe ou pas
 $requete = "SELECT * FROM produits WHERE id_produit =  " . $idProd;
 
+$req_prods_rest = "SELECT SUM(quantite) AS sumProd FROM produits WHERE fait = 0";
 
 //je regarde dans ma base de données 'fait' du produit ciblé
 // est à 1 ou à 0
 foreach ($bdd->query($requete) as $row) {
-
 
     // Si fait = 1 alors je fais ma requete pour passer à 0
     if ($row['fait'] == 1) {
@@ -71,9 +71,9 @@ foreach ($bdd->query($requete) as $row) {
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // cachera la ligne du produit cliquer (avec l'id_produit)
-        echo "$('#id_$idProd .checkFait').removeClass('fa-check-square-o').addClass('fa-square-o');";
-
-
+        echo "$('tr#id_$idProd .checkFait').removeClass('fa-check-square-o').addClass('fa-square-o');";
+        echo 'console.log(' . nbre($req_prods_rest) . ');';
+        echo "$('#reste span').text(".nbre($req_prods_rest).");";
 
         // sinon je le passe à 1
     } else {
@@ -96,8 +96,9 @@ foreach ($bdd->query($requete) as $row) {
         echo 'console.log("c ok à 1");';
 
         // cachera la ligne du produit cliquer (avec l'id_produit)
-        echo "$('#id_$idProd .checkFait').removeClass('fa-square-o').addClass('fa-check-square-o');";
-
+        echo "$('tr#id_$idProd .checkFait').removeClass('fa-square-o').addClass('fa-check-square-o');";
+        echo 'console.log(' . nbre($req_prods_rest) . ');';
+        echo "$('#reste span').text(".nbre($req_prods_rest).");";
     }
 
 }

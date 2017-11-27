@@ -4,7 +4,7 @@ include 'header.php';
 //connection rootà la base de données
 require_once 'connexion.php';
 
-
+include 'fonctions.php';
 ?>
 
     <!--contenu de la page-->
@@ -55,31 +55,14 @@ require_once 'connexion.php';
 
         //// Faire la somme du nombre total de produits à acheter
         $req_sum = "SELECT SUM(quantite) AS sumProd FROM produits";
-        $sum_prod_tot = $bdd->prepare($req_sum);
-        if ($sum_prod_tot->execute()){
-            $lignes_sum_prod = $sum_prod_tot->fetchAll();
-            $sum = 0;
-            foreach ($lignes_sum_prod as $row){
-                $sum += $row['sumProd'];
-            }
-        }
-        echo "<p>Le nombre total d'articles à acheter est de  : " . $sum . "</p><br/>";
-
+        echo "<p id='total'>Le nombre total d'articles à acheter est de  : <span>" . nbre($req_sum) . "</span></p><br/>";
 
         //// Faire la somme du nombre de produits (dont fait = 0) qui reste à acheter
         $req_prods_rest = $req_sum . " WHERE fait = 0";
-        $list_prod_rest = $bdd->prepare($req_prods_rest);
-        if ($list_prod_rest->execute()) {
-            $lignes_produits_reste = $list_prod_rest->fetchAll();
-            $sumRest = 0;
-            foreach ($lignes_produits_reste as $row){
-                $sumRest += $row['sumProd'];
-            }
-            if ($sumRest !== 0) {
-                echo "<p>Il vous reste  " . $sumRest . " d'articles à acheter</p>";
-            }else{
-                echo "<p>Il n'y a plus d'article à acheter</p>";
-            }
+        if (nbre($req_prods_rest) !== 0) {
+            echo "<p id='reste'>Il vous reste  <span>" . nbre($req_prods_rest) . "</span> d'articles à acheter</p>";
+        }else{
+            echo "<p>Il n'y a plus d'article à acheter</p>";
         }
 
         ?>
