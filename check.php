@@ -52,17 +52,14 @@ foreach ($bdd->query($requete) as $row) {
     // Si fait = 1 alors je fais ma requete pour passer à 0
     if ($row['fait'] == 1) {
         $fait = 0;
-        // ma requete
-        $req_update_fait = "UPDATE produits
-                    SET fait = '0' WHERE id_produit = :id_produit";
-        // prépare la requête
+
+        $req_update_fait = "UPDATE produits SET fait = '0' WHERE id_produit = :id_produit";
         $prod_update = $bdd->prepare($req_update_fait);
 
         // lie la variable $id_prod définie au-dessus au paramètre :id_produit de la requête préparée
         $prod_update->bindValue(':id_produit', $idProd, PDO::PARAM_INT);
 
         $prod_update->execute();
-//        updateFaitProduit($fait, $idProd);
 
         ////////////////////////////////////////////
         // script jouer dès que le code PHP est executé
@@ -73,7 +70,7 @@ foreach ($bdd->query($requete) as $row) {
         // cachera la ligne du produit cliquer (avec l'id_produit)
         echo "$('tr#id_$idProd .checkFait').removeClass('fa-check-square-o').addClass('fa-square-o');";
         echo 'console.log(' . nbre($req_prods_rest) . ');';
-        echo "$('#reste span').text(".nbre($req_prods_rest).");";
+        echo "$('#reste span').text(" . nbre($req_prods_rest) . ");";
 
         // sinon je le passe à 1
     } else {

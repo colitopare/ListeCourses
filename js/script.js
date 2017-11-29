@@ -2,17 +2,62 @@
 // le $ pourra être utiliser pour faire du jQuery
 jQuery(document).ready(function ($) {
 
-// Au chargement de la page le formulaire ajouter produit doit être cacher
-    $('form#ajouterProduit').css({display: none});
 
 });
+
+// var id = $($(this).parent('td')).attr('data-idProd');
+// console.log(id);
+
+
+// En fonction du button créer cliquer ou article cliquer
+// le texte dans la modal sera différent
+$('#creerProd').on('click', function () {
+    $('h5.modal-title').text('Ajouter un article');
+    $('form#formProduit').attr('action', 'ajouter.php');
+    $('button#submitForm').text('Ajouter');
+});
+
+
+$('.checkModif').on('click', function () {
+    var id = $($(this).attr('data-id'));
+    var produit = $($(this).parent('td')).attr('data-prod');
+
+    $($(this).parent('td').prev('td').html(
+                                '<input type="texte" name="produit" class="form-control" value="' + produit + '">'));
+    $($(this).parent('td').html('<button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>' +
+                                '<button id="submitForm" type="submit" class="btn btn-warning float-right">Modifier</button>'));
+console.log(($(this).parent('td').prev('td')).children('input').attr('value'));
+
+    // if (($(this).parent('td').prev('td')).children('input').attr('value') != produit){
+    //
+    //     var newProd = $(($(this).parent('td').prev('td')).attr('value'));
+    //     // je passe la valeur dans idProd pour le passer dans le GET
+    //     var data = {
+    //         idProd: id,
+    //         newProd: newProd
+    //     }
+    //     $.ajax({
+    //         url: "http://localhost/ListeCourses/modifier.php", // La source ciblée
+    //         // par defaut la methode est GET
+    //         data: data, // la valeur passer dans le GET
+    //         // Le type de données pouvant être transmises au serveur : php, html, script, json et xml
+    //         dataType: 'script',
+    //         success: function () {
+    //
+    //         }
+    //     });
+    // };
+
+});
+
+
 
 //////////////////////////////////////////////
 // Avec CALLBACK  ///////////////////////////
 // lorsque je vais cliquer sur la poubelle
 // j'exécuterais le php de supprim.php
 // en passant id dans l'url
-$('.supprimer').on('click', function () {
+$('.checkSup').on('click', function () {
     // je récupère l attribut data_id de la ligne cliquer
     // var pour que la variable soit en local
     var id = $(this).attr('data-id');
@@ -90,7 +135,32 @@ $('.moins').on('click', function () {
 });
 
 
-
-// $('#btnAjouter').click(function () {
-//     $('form#ajouterProduit').show();
-// })
+//////////////////////////////////////////////
+// Avec CALLBACK  ///////////////////////////
+// j'exécuterais le php de trier.php
+// en passant le champ à trier dans l'url
+$('.trieCroissant').parent('th').on('click', function () {
+    var champ = $(this).attr('id');
+    console.log(champ);
+    // je passe la valeur dans idProd pour le passer dans le GET
+    var data = {
+        champ: champ
+    }
+    $.ajax({
+        url: "http://localhost/ListeCourses/trier.php", // La source ciblée
+        // par defaut la methode est GET
+        data: data, // la valeur passer dans le GET
+        // Le type de données pouvant être transmises au serveur : php, html, script, json et xml
+        dataType: 'text',
+        success: function (liste_trier) {
+            console.log(liste_trier);
+            // $.each(liste_trier, function (key, valeur) {
+            //
+            //     // console.log(key['id_produit'], valeur);
+            //
+            // })
+            $('#messAlert').addClass('alert alert-success');
+            $('#messAlert').prepend('Le trie c est bien passé');
+        }
+    });
+});

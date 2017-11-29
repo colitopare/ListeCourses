@@ -31,7 +31,7 @@ h1, h2, h3 {
 }
 
 /*met une main au survol de la case à cochet*/
-.chekFait, .chekSup, .moins, .plus {
+.fa {
     cursor: pointer;
 }
 

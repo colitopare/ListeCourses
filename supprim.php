@@ -14,7 +14,7 @@ include 'fonctions.php';
 $id_prod = $_GET['idProd'];
 
 // ma requête
-$req_sup = "DELETE FROM `produits` WHERE id_produit = :id_produit";
+$req_sup = "DELETE FROM produits WHERE id_produit = :id_produit";
 
 // prépare la requête
 $list_prod_sup = $bdd->prepare($req_sup);

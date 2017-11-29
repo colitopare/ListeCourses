@@ -21,13 +21,6 @@ $varEntr = [ 'produit',
              'quantite'
             ];
 
-//$varEntr = [ ['produit', 'string'],
-//             ['quantite', 'int']
-//            ];
-//$varEntr = [ ['nom' => 'produit', 'type' =>'string'],
-//             ['nom' => 'quantite', 'type' => 'int']
-//            ];
-
 foreach ($varEntr as $champTester ){
          //// si les valeurs sont passées en $_GET
     if (isset($_GET[$champTester])){

@@ -5,6 +5,7 @@ include 'header.php';
 require_once 'connexion.php';
 
 include 'fonctions.php';
+
 ?>
 
     <!--contenu de la page-->
@@ -15,14 +16,25 @@ include 'fonctions.php';
         </div>
 
         <div class="row align-items-center">
-            <table class="table table-striped table-responsive col-6">
+            <table class="table table-striped table-responsive col-9">
                 <thead>
                 <tr>
-                    <th scope="col">Articles</th>
                     <th scope="col"></th>
-                    <th scope="col">Quantité</th>
+                    <th id="produit" scope="col">
+                        <i class="fa fa-arrow-down trieCroissant" aria-hidden="true"></i>
+                        Articles
+                        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                    </th>
                     <th scope="col"></th>
-                    <th scope="col">Pris</th>
+                    <th scope="col"></th>
+                    <th id="quantite" scope="col">Quantité</th>
+                    <th scope="col"></th>
+                    <th id="fait" scope="col">
+                        <i class="fa fa-arrow-down trieCroissant" aria-hidden="true"></i>
+                        Pris
+                        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                    </th>
+                    <th id="modif" scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -36,7 +48,12 @@ include 'fonctions.php';
                     $lignes_produits = $list_produits->fetchAll();
                     foreach ($lignes_produits as $row) {
                         echo "<tr id='id_" . $row['id_produit'] . "'>";
-                        echo "<td><i data-id='" . $row['id_produit'] . "' class='fa fa-trash checkSup supprimer' aria-hidden='true'></i> " . $row['produit'] . "</td>";
+                        echo "<td><i data-id='" . $row['id_produit'] . "' class='fa fa-trash checkSup' aria-hidden='true'></i></td>";
+                        echo "<td id='replaceProd'>" . $row['produit'] . "</td>";
+                        echo "<td id='replaceButton'
+                                data-idProd='" . $row['id_produit'] . "' data-prod='" . $row['produit'] . "'>
+                                <i class='fa fa-pencil-square-o checkModif' aria-hidden='true'></i>
+                             </td>";
                         echo "<td><i action='moins' data-moins='" . $row['id_produit'] . "' class='fa fa-minus-square-o moins' aria-hidden='true'></i></td>";
                         echo "<td class='text-center'>" . $row['quantite'] . "</td>";
                         echo "<td><i action='plus' data-plus='" . $row['id_produit'] . "' class='fa fa-plus-square-o plus' aria-hidden='true'></i></td>";
@@ -50,35 +67,34 @@ include 'fonctions.php';
                 </tbody>
             </table>
 
-            <button type="button" class="btn btn-success mr-5" data-toggle="modal" data-target="#article">
-                créer un article
+            <button id="creerProd" type="button" class="btn btn-success mr-5" data-toggle="modal"
+                    data-target="#article">
+                Rajouter un article
             </button>
-            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#article">
-                Modifier un article
-            </button>
+
             <!-- Modal -->
             <div class="modal fade" id="article" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ajouter ou Modifier un article dans votre liste</h5>
+                            <h5 class="modal-title" id="exampleModalLabel"></h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form id="ajouterProduit" class="container" method="post" action="ajouter.php">
+                            <form id="formProduit" class="container" method="post" action="">
                                 <div class="form-group">
                                     <label for="produit">Article</label>
-                                    <input type="texte" name="produit" class="form-control" id="produit" autofocus>
+                                    <input type="texte" name="produit" class="form-control" id="produit">
                                 </div>
                                 <div class="form-group">
                                     <label for="quantite">Quantité</label>
                                     <input type="texte" name="quantite" class="form-control" id="quantite">
                                 </div>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
-                                <button type="submit" class="btn btn-success float-right">Ajouter / Modifier</button>
+                                <button id="submitForm" type="submit" class="btn btn-success float-right"></button>
                             </form>
                         </div>
                     </div>
